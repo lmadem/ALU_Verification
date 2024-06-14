@@ -48,6 +48,7 @@ Design of a simple ALU block in Verilog(which can accomodate 8 instructions) and
   #### The verification environment for ALU block is implemented in two methods
   <li> First one is building a predictor component and implementing a reference model in system verilog. please see the file: "predictor_env.sv" </li>
   <li> Second one is implementing a "DPI-C" reference model and embedding it in the environment. please check out the golden/reference model in the file: "alu_cmodel.c" and "predictor_dpi.sv"  </li>
+  </details>
 
   <details> 
     <summary> Predictor Component Model - environment flow </summary>
