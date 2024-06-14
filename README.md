@@ -120,7 +120,7 @@ Design of a simple ALU block in Verilog(which can accomodate 8 instructions) and
   #### EDA Playground Link
 
   ```bash
-https://www.edaplayground.com/x/Xtfr
+https://www.edaplayground.com/x/wYVB
   ```
 
   #### Verification Standards
