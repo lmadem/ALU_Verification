@@ -16,76 +16,41 @@ Design of a simple ALU block in Verilog(which can accomodate 8 instructions) and
 <details>
   <summary> Defining the black box design of ALU </summary>
 
-  #### Designed a simple memory model which follows APB Synchronous protocol in Verilog. Every transfer takes at least two cycles to complete
-  
-  #### Prefix P denotes AMBA 3 APB Signals (ex. PCLK, PSEL ....)
+  #### Designed a simple ALU block which can support 8 instructions(ADD, SUB, MUL, DIV, LOGICALOR, LOGICALAND, COMP, and {LSHIFT, RSHIFT}
 
-  <li> Input Ports : PCLK, PRESETn, PSEL, PENABLE, PWRITE, PADDR, PWDATA </li>
+  <li> Input Ports : CLK, RESET, INP1, INP2, OP_CODE </li>
 
-  <li> Output Ports : PRDATA, PREADY </li>
+  <li> Output Port : OUTP </li>
 
   #### Input Signals Description
 
-  <li> PCLK       : Clock </li>
-  <li> PRESETn    : Asynchronous reset, active low </li>
-  <li> PSEL       : APB Select Signal, active high </li>
-  <li> PENABLE    : APB Enable Signal, active high </li>
-  <li> PWRITE     : APB Write/read Signal, PWRITE = 1 for Write and PWRITE = 0 for Read </li>
-  <li> PADDR      : APB address Signal, 32 bit wide </li>
-  <li> PWDATA     : APB Write Data Signal, 32 bit wide </li>
+  <li> CLK        : Clock </li>
+  <li> RESET      : Asynchronous reset, active high </li>
+  <li> INP1       : Parameterized Operand1 </li>
+  <li> INP2       : Parameterized Operand2 </li>
+  <li> OP_CODE    : 3-bit operation signal </li>
 
-  #### Output Signals Description
+  #### Output Signal Description
 
-  <li> PRDATA     : APB Read Data Signal, 32 bit wide </li>
-  <li> PREADY     : APB Ready Signal, Active High </li>
+  <li> OUTP       : Parameterized result Output </li>
 
   #### Black Box Design
 
   ![image](https://github.com/lmadem/APB_Slave_Verification/assets/93139766/974a0ad8-ceb7-47d9-8048-d52e6d09bf6f)
 
-  #### APB Operating States : It operates in two phases, setup phase and access phase
-
-  ##### SETUP PHASE
-
-  <li> PSEL = 1 </li>
-  <li> PWRITE = 1 </li>
-  <li> PADDR = PADDR </li>
-  <li> PWDATA = PWDATA </li>
-
-  ##### ACCESS PHASE
-
-  <li> PENABLE = 1 </li>
-
-  #### APB Write without Wait States
-
-  ![image](https://github.com/lmadem/APB_Slave_Verification/assets/93139766/2c4d9dc6-c41b-41db-a39d-75b12614cb28)
-
-  #### APB Write with Wait States
-
-  ![image](https://github.com/lmadem/APB_Slave_Verification/assets/93139766/928a3d8c-f8e2-403e-9633-5b384f690891)
-
-  #### APB Read without Wait States
-
-  ![image](https://github.com/lmadem/APB_Slave_Verification/assets/93139766/c2e64ab8-c8c7-4d9f-910f-1a78f62a05fb)
-
-   #### APB Read with Wait States
-
-   ![image](https://github.com/lmadem/APB_Slave_Verification/assets/93139766/ab242e25-7362-4b28-a945-07c7d796f58f)
-
-
-  <li> This is a simple APB Slave Model implemented in verilog. Please check out the file "Design.sv" for verilog code</li>
+  <li> This is a simple ALU Model implemented in verilog. Please check out the file "alu.v" for verilog code</li>
   
 </details>
 
 <details>
-  <summary> Verification Plan </summary>
+  <summary> Verification Strategy </summary>
 
-  #### The verification plan for APB Slave design is implemented in two phases
-  <li> First phase is without wait states for the testcases </li>
-  <li> Second phase is with wait states for the testcases </li>
+  #### The verification environment for ALU block is implemented in two methods
+  <li> First one is building a predictor component and implementing a reference model in system verilog. please see the file: "predictor_env.sv" </li>
+  <li> Second one is implementing a "DPI-C" reference model and embedding it in the environment. please check out the golden/reference model in the file: "alu_cmodel.c" and "predictor.sv"  </li>
 
   <details> 
-    <summary> Test Plan </summary>
+    <summary> Predictor Component Model - environment flow </summary>
 
 ![image](https://github.com/lmadem/APB_Slave_Verification/assets/93139766/0dde8c50-ebd8-44db-b94a-9a93d3f8eafd)
 
@@ -95,7 +60,7 @@ Design of a simple ALU block in Verilog(which can accomodate 8 instructions) and
 </details>
 
 <details>
-  <summary> Verification Results </summary>
+  <summary> DPI-C Reference Model - environment flow </summary>
 
   <details>
     <summary> UVM Environment </summary>
