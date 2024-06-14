@@ -16,7 +16,7 @@ Design of a simple ALU block in Verilog(which can accomodate 8 instructions) and
 <details>
   <summary> Defining the black box design of ALU </summary>
 
-  #### Designed a simple ALU block which can support 8 instructions(ADD, SUB, MUL, DIV, LOGICALOR, LOGICALAND, COMP, and {LSHIFT, RSHIFT}
+  #### Designed a simple parameterized ALU block which can support 8 instructions(ADD, SUB, MUL, DIV, LOGICALOR, LOGICALAND, COMP, and {LSHIFT, RSHIFT}
 
   <li> Input Ports : CLK, RESET, INP1, INP2, OP_CODE </li>
 
@@ -78,7 +78,7 @@ https://www.edaplayground.com/x/wYVB
 
   #### Verification Standards
 
-  <li> Implemented predictor component, robust monitors, driver and DPI-C reference model, and in-order scoreboard. Built a robust & reusable components in UVM architecture </li>
+  <li> Implemented a parameterized environment, predictor component, robust monitors, driver and DPI-C reference model, and in-order scoreboard. Built a robust & reusable components in UVM architecture </li>
 
   #### Simulation Steps
   <details>
