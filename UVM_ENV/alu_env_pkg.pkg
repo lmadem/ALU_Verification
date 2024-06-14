@@ -1,0 +1,21 @@
+package alu_env_pkg;
+
+//UVM class library 
+import uvm_pkg::*;
+
+import "DPI-C" function int unsigned alu_dpi_model(input int unsigned opa, opb, op, width);
+
+`include "alu_transaction.sv"
+`include "base_sequence.sv"
+`include "sequencer.sv"
+`include "driver.sv"
+`include "iMonitor.sv"
+`include "master_agent.sv"
+`include "oMonitor.sv"
+`include "slave_agent.sv"
+//`include "predictor_env.sv" //enable this line to run golden/reference model in the environment
+`include "predictor_dpi.sv" //golden-reference model in c
+`include "scoreboard.sv"
+`include "environment.sv"
+
+endpackage
