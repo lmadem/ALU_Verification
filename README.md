@@ -66,6 +66,7 @@ Design of a simple ALU block in Verilog(which can accomodate 8 instructions) and
 <details>
   <summary> DPI-C Reference Model - environment flow </summary>
 
+![image](https://github.com/lmadem/ALU_Verification/assets/93139766/854f0fc2-e41b-40c2-8144-4d547912fb29)
 
 
   </details>
