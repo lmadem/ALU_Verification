@@ -47,7 +47,7 @@ Design of a simple ALU block in Verilog(which can accomodate 8 instructions) and
 
   #### The verification environment for ALU block is implemented in two methods
   <li> First one is building a predictor component and implementing a reference model in system verilog. please see the file: "predictor_env.sv" </li>
-  <li> Second one is implementing a "DPI-C" reference model and embedding it in the environment. please check out the golden/reference model in the file: "alu_cmodel.c" and "predictor.sv"  </li>
+  <li> Second one is implementing a "DPI-C" reference model and embedding it in the environment. please check out the golden/reference model in the file: "alu_cmodel.c" and "predictor_dpi.sv"  </li>
 
   <details> 
     <summary> Predictor Component Model - environment flow </summary>
@@ -62,20 +62,7 @@ Design of a simple ALU block in Verilog(which can accomodate 8 instructions) and
 <details>
   <summary> DPI-C Reference Model - environment flow </summary>
 
-  <details>
-    <summary> UVM Environment </summary>
 
-  <li> Implemented all the listed testcases as per the test plan in UVM architecture. The testbench environment consists of top module, interface, program block, transaction class, base sequence, reset sequence, write_read sequence, out of order sequence, config object, sequencer, driver, input monitor, coverage, master agent, output monitor, slave agent, scoreboard(out of order), environment, package, base test and other test components </li>
-
-  <li> The UVM environment will be able to run one test case per simulation </li>
-
-  ### Test Plan Status
-  
- ![image](https://github.com/lmadem/APB_Slave_Verification/assets/93139766/7328ddb8-8eab-4b05-a475-6c878a9e115c)
-
- <li> Please check the folder UVM ENV for code files </li>
-
-  </details>
 
   </details>
 
@@ -90,28 +77,26 @@ https://www.edaplayground.com/x/wYVB
 
   #### Verification Standards
 
-  <li> Implemented coverage component and acheived 100% functional coverage. Implemented out-of-order scoreboard. Built a robust & reusable components in UVM architecture </li>
+  <li> Implemented predictor component, robust monitors, driver and DPI-C reference model, and in-order scoreboard. Built a robust & reusable components in UVM architecture </li>
 
   #### Simulation Steps
   <details>
-    <summary> Without Wait States </summary>
+    <summary> To run predictor model </summary>
 
-##### Open "top.sv", set parameter parameter WAIT_CYCLES_COUNT_TB = 0(which overrides the parameter in design) to perform APB Slave transfer without wait states
+##### Open "alu_env_pkg.pkg", uncomment the line with filename: "predictor_env.sv" and comment file: "predictor_dpi.sv"
 
-##### To run wr_test : provide +UVM_TESTNAME=wr_test in runtime arguments
-
-##### To run out_of_order_test : provide +UVM_TESTNAME=out_of_order_test in runtime arguments
+##### To run base_test : provide +UVM_TESTNAME=base_test in runtime arguments
 
   </details>
   
   <details>
-    <summary> With Wait States </summary>
+    <summary> To run DPI-C reference model </summary>
 
-##### Open "top.sv", set parameter parameter WAIT_CYCLES_COUNT_TB = any_random_value(which overrides the parameter in design) to perform APB Slave transfer with wait states
+##### Open "alu_env_pkg.pkg", uncomment the line with filename: "predictor_dpi.sv" and comment file: "predictor_env.sv"
 
-##### To run wr_test : provide +UVM_TESTNAME=wr_test in runtime arguments
+##### To run base_test : provide +UVM_TESTNAME=base_test in runtime arguments
 
-##### To run out_of_order_test : provide +UVM_TESTNAME=out_of_order_test in runtime arguments
+##### provide alu_cmodel.c in the compile options(-timescale=1ns/1ns +vcs+flush+all +warn=all -sverilog alu_cmodel.c)
 
   </details>
 </details>
