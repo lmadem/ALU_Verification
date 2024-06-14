@@ -6,7 +6,8 @@ Design of a simple ALU block in Verilog(which can accomodate 8 instructions) and
 
   #### In general, an arithmetic logic unit(ALU) is a digital circuit that performs arithmetic and bitwise operations on integer binary numbers. It is a fundamental building block of many types of computing circuits, including the central processing unit(CPU), floating-point unit(FPU), and graphics processing units(GPU) 
 
-  ![image](https://github.com/lmadem/APB_Slave_Verification/assets/93139766/01f008d7-a43c-47c7-8796-fc2198665baf)
+  ![image](https://github.com/lmadem/ALU_Verification/assets/93139766/101d2289-e010-4f62-8e05-cb6662e1b085)
+
 
   #### A simple ALU design has three parallel data buses consisting of two input operands(A and B), a result output(Y), and a code indicating the operation to be performed(OPCODE). The OPCODE input is also a parallel bus that conveys to the ALU an operation selection code, which is an enumerated value that specifies the desired arithmetic or logic operation to be performed by the ALU
   
@@ -36,7 +37,8 @@ Design of a simple ALU block in Verilog(which can accomodate 8 instructions) and
 
   #### Black Box Design
 
-  ![image](https://github.com/lmadem/APB_Slave_Verification/assets/93139766/974a0ad8-ceb7-47d9-8048-d52e6d09bf6f)
+  ![image](https://github.com/lmadem/ALU_Verification/assets/93139766/2caab606-f037-4074-b209-0c1ce4e23a60)
+
 
   <li> This is a simple ALU Model implemented in verilog. Please check out the file "alu.v" for verilog code</li>
   
@@ -53,7 +55,8 @@ Design of a simple ALU block in Verilog(which can accomodate 8 instructions) and
   <details> 
     <summary> Predictor Component Model - environment flow </summary>
 
-![image](https://github.com/lmadem/APB_Slave_Verification/assets/93139766/0dde8c50-ebd8-44db-b94a-9a93d3f8eafd)
+  ![image](https://github.com/lmadem/ALU_Verification/assets/93139766/a113a244-2875-46f3-815d-45e95d79ee4a)
+
 
 
 
